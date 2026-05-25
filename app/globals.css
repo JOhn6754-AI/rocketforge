@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+body {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+/* Rocket visualization styles */
+.rocket-container {
+  position: relative;
+  width: 120px;
+  margin: 0 auto;
+}
+
+.rocket-body {
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.stage {
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.fuel-bar {
+  transition: height 0.3s ease;
+}
+
+.simulation-rocket {
+  transition: transform 0.05s linear;
+}
