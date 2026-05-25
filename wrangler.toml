@@ -1,6 +1,0 @@
-name = "rocketforge"
-compatibility_date = "2025-05-01"
-
-[pages]
-# This tells Wrangler this is a static site
-# We will deploy the `out` directory directly
