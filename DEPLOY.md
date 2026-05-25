@@ -1,47 +1,62 @@
-# Deploying RocketForge to Cloudflare Pages
+# Deploying RocketForge
 
-## Option 1: Deploy with Wrangler (Local)
+This project is set up for easy deployment to **Cloudflare Pages** using GitHub.
 
-1. Make sure you're logged into Cloudflare:
-   ```bash
-   wrangler login
-   ```
+## Step-by-step Deployment (GitHub + Cloudflare)
 
-2. First time only — create the Pages project:
-   ```bash
-   wrangler pages project create rocketforge --production-branch=main
-   ```
+### 1. Create a GitHub Repository
 
-3. Build and deploy:
-   ```bash
-   npm run deploy
-   ```
+1. Go to [https://github.com/new](https://github.com/new)
+2. Repository name: `rocketforge` (recommended)
+3. Make it **Public** (easier for Cloudflare)
+4. **Do NOT** initialize with README, .gitignore, or license (we already have those)
+5. Click **Create repository**
 
-4. For preview deployments:
-   ```bash
-   npm run deploy:preview
-   ```
+### 2. Push Your Code
 
-## Option 2: Deploy via Git + Cloudflare Dashboard (Recommended)
+After creating the repo, run these commands (replace `YOUR_USERNAME` with your GitHub username):
 
-This is often more reliable:
+```bash
+git remote add origin https://github.com/YOUR_USERNAME/rocketforge.git
+git branch -M main
+git push -u origin main
+```
 
-1. Push this project to a GitHub repository.
+### 3. Deploy to Cloudflare Pages
 
-2. Go to https://dash.cloudflare.com → Pages → Create a project → Connect to Git.
-
-3. Select your repository.
-
+1. Go to [https://dash.cloudflare.com](https://dash.cloudflare.com)
+2. Navigate to **Pages** → **Create a project** → **Connect to Git**
+3. Select your `rocketforge` repository
 4. Use these settings:
+
+   - **Framework preset**: `Next.js`
    - **Build command**: `npm run build`
    - **Build output directory**: `out`
-   - **Environment variables**: (none needed)
+   - **Root directory**: (leave empty)
 
-5. Click Save and Deploy.
+5. Click **Save and Deploy**
+
+Cloudflare will automatically build and deploy your site. This usually takes 1–3 minutes.
+
+Your site will be live at:
+`https://rocketforge.pages.dev`
 
 ---
 
-**Note**: This project uses Next.js static export (`output: "export"`), so it deploys as a fully static site. All simulation logic runs in the browser.
+## Alternative: Manual Deploy with Wrangler
 
-After deployment, your site will be available at:
-`https://rocketforge.pages.dev` (or your custom domain)
+If you prefer command line:
+
+```bash
+# Login
+wrangler login
+
+# Deploy (build happens on Cloudflare, but this pushes the static files)
+npm run deploy
+```
+
+**Note**: Because of a local build issue on this machine, the GitHub + Cloudflare dashboard method is strongly recommended.
+
+---
+
+Once deployed, you can connect a custom domain in the Cloudflare Pages dashboard if desired.
